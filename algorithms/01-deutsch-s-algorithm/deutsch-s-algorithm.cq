@@ -1,7 +1,7 @@
 // Deutsch's problem
 // ---------------
 // For a,b in {+1, -1}, determine whether a = b
-// 
+//
 // Deutsch algorithm
 // -----------------
 // Define a unitary U
@@ -11,7 +11,7 @@
 // |0> - [H] - [U] - [H] - measure
 // If a = b, we measure 0
 // If a != b, we measure 1
-// 
+//
 // Implementation
 // --------------
 // The below circuit implements the 4 permutations of a and b on 4 separate qubits

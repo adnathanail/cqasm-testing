@@ -1,0 +1,41 @@
+// Deutsch-Josza problem
+// ---------------
+// For N = 2^n, we are given x={0, 1}^N such that either
+// - All x_i are the same ("constant") OR
+// - Half of x_i are 0, and half are 1 ("balanced")
+// The goal is to determine whether x is constant or balanced
+//
+// Oracle
+// ------
+// We are given an oracle Ox+- which encodes the value of x into the phase of its input
+// E.g. if X is 001101, given an input 111111, the ouput will be -1-1-1-1-1-1
+//
+// Deutsch-Josza algorithm
+// -----------------
+// Repeated n times
+// |0> - [H] - [    ] - [H] - measure
+// |0> - [H] - [    ] - [H] - measure
+//     ...     [Ox+-]      ...
+// |0> - [H] - [    ] - [H] - measure
+// If we measure 00...0 x is balanced
+// If we measure 11...1 x is constant
+//
+// Implementation
+// --------------
+// Different cases of x are encoded as different oracles
+//   un/re-comment different oracles for different outputs
+
+version 3.0
+
+// create a qubit register of 2 qubits and a bit register of 2 bits
+qubit[4] q
+bit[4] b
+
+H q[0:3]
+
+Z q[1]
+Z q[2]
+
+H q[0:3]
+
+b = measure q
