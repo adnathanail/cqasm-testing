@@ -1,0 +1,47 @@
+// Deutsch's problem
+// ---------------
+// For a,b in {+1, -1}, determine whether a = b
+// 
+// Deutsch algorithm
+// -----------------
+// Define a unitary U
+// U = (a 0)
+//     (0 b)
+// In the circuit
+// |0> - [H] - [U] - [H] - measure
+// If a = b, we measure 0
+// If a != b, we measure 1
+// 
+// Implementation
+// --------------
+// The below circuit implements the 4 permutations of a and b on 4 separate qubits
+//   effectively implementing each U, through a combination of standard gates
+
+version 3.0
+
+// create a qubit register of 2 qubits and a bit register of 2 bits
+qubit[4] q
+bit[4] b
+
+// a = 1, b = 1
+H q[0]
+I q[0]
+H q[0]
+
+// a = 1, b = -1
+H q[1]
+Z q[1]
+H q[1]
+
+// a = -1, b = 1
+H q[2]
+X q[2]
+Z q[2]
+H q[2]
+
+// a = -1, b = -1
+H q[3]
+Rz(2 * pi) q[3]
+H q[3]
+
+b = measure q
